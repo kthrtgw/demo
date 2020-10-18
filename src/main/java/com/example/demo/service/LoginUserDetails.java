@@ -6,17 +6,14 @@ import com.example.demo.entity.LoginUser;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 
+@SuppressWarnings("serial")
 public class LoginUserDetails implements UserDetails {
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = 6255359147768465815L;
     private final LoginUser loginUser;
-
+    
+    @Autowired
     public LoginUserDetails(LoginUser loginUser) {
         this.loginUser = loginUser;
     }
@@ -25,13 +22,17 @@ public class LoginUserDetails implements UserDetails {
         return loginUser;
     }
 
-    public String getName() { // --- (2) nameを返却するメソッド
+    public String getUserName() { // --- (2) nameを返却するメソッド
         return this.loginUser.getUserName();
+    }
+
+    public String getEmailAddress() { 
+        return this.loginUser.getEmailAddress();
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() { // --- (3) ユーザに与えられている権限リストを返却するメソッド
-        return AuthorityUtils.createAuthorityList("ROLE_" + this.loginUser.getRoleName());
+        return null;//AuthorityUtils.createAuthorityList("ROLE_" + this.loginUser.getRoleName());
     }
 
     @Override

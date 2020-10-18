@@ -13,10 +13,10 @@ import org.springframework.util.StringUtils;
 
 @Service
 public class LoginUserDetailsService implements UserDetailsService {
-    @Autowired
+
     private final LoginUserDao loginUserDao;
 
-    
+    @Autowired
     public LoginUserDetailsService(LoginUserDao loginUserDao) {
         this.loginUserDao = loginUserDao;
     }
