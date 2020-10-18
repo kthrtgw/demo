@@ -98,3 +98,14 @@ task doma(type: Sync) {
     group = 'doma-gen'
     dependsOn renameDao
 }
+
+bootJar {
+    baseName = 'lyricWallSpring'
+    version =  '0.1.0'
+}
+//debug用にgradleがJVMに引数を渡せる必要がある
+bootRun {
+   systemProperties = System.properties  //左がjdkの引数、右がgradleの引数らしい。
+   //上記の行により、gradle実行時の以下のコマンドライン引数がjdkに渡される。
+   jvmArgs=["-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:5050"]
+}
